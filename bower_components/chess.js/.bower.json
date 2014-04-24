@@ -1,0 +1,13 @@
+{
+  "name": "chess.js",
+  "homepage": "https://github.com/jhlywa/chess.js",
+  "_release": "2b3607437f",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "2b3607437f4d04b97131d79797cb465b9d2a4c67"
+  },
+  "_source": "git://github.com/jhlywa/chess.js.git",
+  "_target": "*",
+  "_originalSource": "git://github.com/jhlywa/chess.js"
+}

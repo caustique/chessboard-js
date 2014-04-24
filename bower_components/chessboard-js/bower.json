@@ -1,0 +1,27 @@
+{
+	"name": "chessboard-js",
+	"description": "A responsive mobile-first javascript chessboard library.",
+	"main": [
+		"js/chessboard.js",
+		"css/chessboard.css"
+	],
+	"license": "MIT",
+	"ignore": [
+		"Gruntfile.js",
+		".gitignore",
+		"test/",
+		"package.json",
+		"yuidoc.json"
+	],
+	"keywords" : ["chess", "chessboard", "js", "javascript", "responsive", "chess-gui", "chessboard-gui", "mobile"],
+	"authors": [
+		{ "name": "Attila Szantner" }
+	],
+	"dependencies": {
+		"jquery": "~2.1.0"
+	},
+	"devDependencies": {
+		"mocha": "~1.18.2",
+		"chai": "~1.9.1"
+	}
+}

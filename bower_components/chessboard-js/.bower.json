@@ -1,0 +1,49 @@
+{
+  "name": "chessboard-js",
+  "description": "A responsive mobile-first javascript chessboard library.",
+  "main": [
+    "js/chessboard.js",
+    "css/chessboard.css"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "Gruntfile.js",
+    ".gitignore",
+    "test/",
+    "package.json",
+    "yuidoc.json"
+  ],
+  "keywords": [
+    "chess",
+    "chessboard",
+    "js",
+    "javascript",
+    "responsive",
+    "chess-gui",
+    "chessboard-gui",
+    "mobile"
+  ],
+  "authors": [
+    {
+      "name": "Attila Szantner"
+    }
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.18.2",
+    "chai": "~1.9.1"
+  },
+  "homepage": "https://github.com/caustique/chessboard-js",
+  "version": "0.1.0",
+  "_release": "0.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.0",
+    "commit": "cdd2c6ef34af270bcb74335ea3489adeba8710e4"
+  },
+  "_source": "git://github.com/caustique/chessboard-js.git",
+  "_target": "0.1.0",
+  "_originalSource": "chessboard-js"
+}

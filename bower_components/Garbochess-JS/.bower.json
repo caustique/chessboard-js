@@ -1,0 +1,13 @@
+{
+  "name": "Garbochess-JS",
+  "homepage": "https://github.com/glinscott/Garbochess-JS",
+  "_release": "4ff0f9e49a",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "4ff0f9e49a0041545b645e25d3d2da7af3b36a90"
+  },
+  "_source": "git://github.com/glinscott/Garbochess-JS.git",
+  "_target": "*",
+  "_originalSource": "git://github.com/glinscott/Garbochess-JS"
+}
