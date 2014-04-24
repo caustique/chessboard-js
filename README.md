@@ -5,6 +5,8 @@ A responsive mobile-first javascript chessboard library.
 ##Quick start 
 
 Clone the repo: `https://github.com/caustique/chessboard-js.git`
+or
+Install with [Bower](http://bower.io): `bower install chessboard-js`.
 
 ##Developer notes
 
@@ -16,7 +18,7 @@ To regenerate minified versions of the css and js files run `grunt minify`
 
 The tests are far from complete.
 
-Using [Brackets](http://brackets.io/) - all js files should be without JSLint problems.
+Using [Brackets](http://brackets.io/) - all js files should be without any JSLint problems.
 
 ##License
 
