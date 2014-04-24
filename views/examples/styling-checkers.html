@@ -1,0 +1,50 @@
+<div data-caustique-app-navbar></div>
+
+<div class="container">
+	<header class="page-header">
+		<h1>ChessboardJS examples <small>Styling - Images</small></h1>
+	</header>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-1"></div>
+		
+		<div class="col-md-4">
+			<div data-caustique-app-sidebar></div>
+		</div>
+		
+		<div class="col-md-6">					
+			<h5>CSS</h5>
+			<p>
+				
+<pre class="prettyprint lang-css">
+#my-board-checkers div.chess_board div.chess_player_black.chess_piece_pawn {
+	background-image: url('../images/checkers-black.png');
+}
+#my-board-checkers div.chess_board div.chess_player_white.chess_piece_pawn {
+	background-image: url('../images/checkers-white.png');
+}
+#my-board-checkers div.chess_board div.chess_player_black.chess_piece_pawn:after,
+#my-board-checkers div.chess_board div.chess_player_white.chess_piece_pawn:after {
+	content: '';
+}
+</pre>
+			</p>
+	
+			<div id="my-board-checkers" style="width:100%"></div>
+		</div>
+		
+		<div class="col-md-1"></div>
+	</div>
+</div>
+
+<script>		
+	
+	var checkersFen = '1p1p1p1p/p1p1p1p1/1p1p1p1p/8/8/P1P1P1P1/1P1P1P1P/P1P1P1P1';
+	var board = new Chessboard('my-board-checkers', checkersFen);								
+	
+	$(document).ready(prettyPrintPrepare);
+	
+</script>
+

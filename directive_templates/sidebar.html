@@ -1,0 +1,87 @@
+<div ng-controller="MenuCtrl">
+	
+<div class="panel panel-default" >
+	<div class="panel-heading panel-heading-clickable" 
+			 ng-click="go('/examples/basic/empty')">
+		<h4 class="panel-title">
+			Basic usage
+			<span class="glyphicon glyphicon-chevron-down pull-right"
+						ng-show="current_path.indexOf('/examples/basic') !== 0"></span>
+		</h4>
+	</div>	
+  <div class="panel-body list-group" ng-show="current_path.indexOf('/examples/basic') === 0">
+		<a ng-href="#/examples/basic/empty" class="list-group-item"
+			 ng-class="{active: current_path === '/examples/basic/empty'}">Empty board</a>
+		<a ng-href="#/examples/basic/start" class="list-group-item"
+			 ng-class="{active: current_path === '/examples/basic/start'}">Start position</a>
+		<a ng-href="#/examples/basic/fen" class="list-group-item"
+			 ng-class="{active: current_path === '/examples/basic/fen'}">FEN string</a>
+		<a ng-href="#/examples/basic/position" class="list-group-item"
+			 ng-class="{active: current_path === '/examples/basic/position'}">Position object</a>
+		<a ng-href="#/examples/basic/multiple" class="list-group-item"
+			 ng-class="{active: current_path === '/examples/basic/multiple'}">Multiple boards</a>
+  </div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading panel-heading-clickable" 
+			 ng-click="go('/examples/styling/customcolors')">
+		<h4 class="panel-title">
+			Styling
+			<span class="glyphicon glyphicon-chevron-down pull-right"
+						ng-show="current_path.indexOf('/examples/styling') !== 0"></span>
+		</h4>
+	</div>
+	<div class="panel-body list-group" ng-show="current_path.indexOf('/examples/styling') === 0">
+		<a ng-href="#/examples/styling/customcolors" class="list-group-item" 
+			 ng-class="{active: current_path === '/examples/styling/customcolors'}">Custom colors</a>
+		<a ng-href="#/examples/styling/images" class="list-group-item" 
+			 ng-class="{active: current_path === '/examples/styling/images'}">Images for pieces</a>
+		<a ng-href="#/examples/styling/boardimages" class="list-group-item" 
+			 ng-class="{active: current_path === '/examples/styling/boardimages'}">Images for squares</a>
+		<a ng-href="#/examples/styling/checkers" class="list-group-item" 
+			 ng-class="{active: current_path === '/examples/styling/checkers'}">Checkers</a>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading panel-heading-clickable"
+			 ng-click="go('/examples/methods/getposition')">
+		<h4 class="panel-title">
+			Methods
+			<span class="glyphicon glyphicon-chevron-down pull-right"
+						ng-show="current_path.indexOf('/examples/methods') !== 0"></span>
+		</h4>
+	</div>
+	<div class="panel-body list-group" ng-show="current_path.indexOf('/examples/methods') === 0">
+		<a ng-href="#/examples/methods/getposition" class="list-group-item" 
+			 ng-class="{active: current_path === '/examples/methods/getposition'}">getPosition()</a>
+		<a ng-href="#/examples/methods/setposition" class="list-group-item" 
+			 ng-class="{active: current_path === '/examples/methods/setposition'}">setPosition()</a>
+		<a ng-href="#/examples/methods/clear" class="list-group-item" 
+			 ng-class="{active: current_path === '/examples/methods/clear'}">clear()</a>
+		<a ng-href="#/examples/methods/move" class="list-group-item" 
+			 ng-class="{active: current_path === '/examples/methods/move'}">move()</a>
+		<a ng-href="#/examples/methods/setorientation" class="list-group-item" 
+			 ng-class="{active: current_path === '/examples/methods/setorientation'}">setOrientation()</a>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading panel-heading-clickable"
+			 ng-click="go('/examples/integration/chessjs')">
+		<h4 class="panel-title">
+			Integration
+			<span class="glyphicon glyphicon-chevron-down pull-right"
+						ng-show="current_path.indexOf('/examples/integration') !== 0"></span>
+		</h4>
+	</div>
+	<div class="panel-body list-group" ng-show="current_path.indexOf('/examples/integration') === 0">
+		<a ng-href="#/examples/integration/chessjs" class="list-group-item" 
+			 ng-class="{active: current_path === '/examples/integration/chessjs'}">Chess.js</a>
+		<a ng-href="#/examples/integration/garbochess" class="list-group-item" 
+			 ng-class="{active: current_path === '/examples/integration/garbochess'}">GarboChess JS</a>
+	</div>
+</div>
+	
+</div>

@@ -1,0 +1,173 @@
+<div data-caustique-app-navbar></div>
+
+<div class="container">
+	<header class="page-header">
+		<h1>ChessboardJS examples <small>Methods - setOrientation(orientation)</small></h1>
+	</header>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-1"></div>
+		
+		<div class="col-md-4">
+			<div data-caustique-app-sidebar></div>
+		</div>
+		
+		<div class="col-md-6">					
+			<h4>setOrientation(orientation)</h4>
+			<br/>
+			<h5>DESCRIPTION</h5>
+			<p>
+				Sets wether the white or black pieces are at the bottom of the board.
+			</p>
+			<h5>JAVASCRIPT</h5>
+			<p>
+				
+<pre class="prettyprint">
+board.setOrientation(ChessUtils.ORIENTATION.white);
+</pre>
+			
+			</p>
+			<h5>IN ACTION</h5>
+			<p>
+				You can set the orientation and also check that it doesn't effect the setPosition() and getPosition() methods.
+			</p>	
+			<p>	
+				<a type="button" class="btn btn-primary" 
+					 onclick="setOrientation(ChessUtils.ORIENTATION.white)">setOrientation(ChessUtils.ORIENTATION.white)</a>
+			</p><p>	
+				<a type="button" class="btn btn-primary" 
+					 onclick="setOrientation(ChessUtils.ORIENTATION.black)">setOrientation(ChessUtils.ORIENTATION.black)</a>
+			</p><p>	
+				<a type="button" class="btn btn-primary" 
+					 onclick="setOrientation(ChessUtils.ORIENTATION.flip)">setOrientation(ChessUtils.ORIENTATION.flip)</a>
+			</p>
+			<p>getOrientation() says, that the orientation of the board is: <strong>
+				<span id="actualOrientation"></span></strong>.</p>
+			<hr/>
+			<p>
+				Set the position to:
+				<small>
+				<ul>
+					<li><a style="cursor: pointer"
+								 onclick="board.setPosition(ChessUtils.FEN.startId)">
+						Start position</a></li>
+					<li><a style="cursor: pointer"
+								 onclick="board.setPosition('r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R')">
+						Ruy Lopez</a></li>
+					<li><a style="cursor: pointer"
+								 onclick="board.setPosition(ChessUtils.FEN.emptyId)">
+						Clear board (with method setPosition())</a></li>
+					<li><a style="cursor: pointer"
+								 onclick="board.clear()">
+						Clear board (with method clear())</a></li>
+				</ul>
+				</small>
+			</p>
+	
+			<div id="my-board" style="width:100%"></div>
+			<div class="panel panel-default" ng-controller="MenuCtrl">
+				<div class="panel-heading">
+					<h5>
+						Game information 
+					</h5>
+				</div>
+				<ul class="list-group">
+					<li class="list-group-item">Status: <span id="info-status"></span>
+						<a type="button" id="btn-reset-game" class="pull-right" style="cursor: pointer;" onclick="resetGame()">Restart game</a>
+					</li>
+					<li class="list-group-item">Fen: <span id="info-fen"></span></li>
+					<li class="list-group-item">Pgn: <span id="info-pgn"></span></li>
+				</ul>
+			</div>
+			
+		</div>
+		
+		<div class="col-md-1"></div>
+	</div>
+</div>
+
+<script>		
+																			
+	var chess = new Chess();
+	
+	var board = new Chessboard('my-board', {
+		position: ChessUtils.FEN.startId,
+		eventHandlers: {
+			onPieceSelected: pieceSelected,
+			onMove: pieceMove
+		}
+	});
+	
+	resetGame();
+	
+	function setOrientation(orientation) {
+		board.setOrientation(orientation)
+		$('#actualOrientation').html((board.getOrientation() === ChessUtils.ORIENTATION.black ? 'black' : 'white'));
+	}
+	
+	function resetGame() {
+		board.setPosition(ChessUtils.FEN.startId);
+		setOrientation(ChessUtils.ORIENTATION.white);
+		chess.reset();
+		
+		updateGameInfo('Next player is white.');
+	}
+	
+	function updateGameInfo(status) {
+		$('#info-status').html(status);
+		$('#info-fen').html(chess.fen());
+		$('#info-pgn').html(chess.pgn());
+	}
+	
+	function pieceMove(move) {
+		
+		var nextPlayer,
+			status,
+			chessMove = chess.move({
+				from: move.from,
+				to: move.to,
+				promotion: 'q'
+			});
+		
+		
+		nextPlayer = 'white';
+		if (chess.turn() === 'b') {
+			nextPlayer = 'black';
+		}
+		
+		if (chessMove !== null) {
+			if (chess.in_checkmate() === true) {
+				status = 'CHECKMATE! Player ' + nextPlayer + ' lost.';
+			} else if (chess.in_draw() === true) {
+				status = 'DRAW!';
+			} else {
+				status = 'Next player is ' + nextPlayer + '.';
+
+				if (chess.in_check() === true) {
+					status = 'CHECK! ' + status;				
+				}
+			}
+			
+			updateGameInfo(status);			
+		}
+
+		return chess.fen();
+	}
+	
+	function pieceSelected(notationSquare) {
+		var i,
+			movesNotation,
+			movesPosition = [];
+		
+		movesNotation = chess.moves({square: notationSquare, verbose: true});
+		for (i = 0; i < movesNotation.length; i++) {
+			movesPosition.push(ChessUtils.convertNotationSquareToIndex(movesNotation[i].to));
+		}
+		return movesPosition;
+	}
+
+	
+</script>
+

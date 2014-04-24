@@ -1,0 +1,57 @@
+<div data-caustique-app-navbar></div>
+
+<div class="jumbotron">
+	<div class="container">
+		<h1>ChessboardJS</h1>
+		<p style="font-family: 'The girl next door'">A responsive mobile-first javascript chessboard library</p>
+		<p><a class="btn btn-primary btn-lg" role="button" href="https://github.com/caustique/chessboard-js/archive/master.zip">Download now &raquo;</a></p>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-1"></div>
+		
+		<div class="col-md-6">
+			<h2>Main features</h2>
+			<dl>
+				<dt><span class="glyphicon glyphicon-log-in"></span> Easy integration</dt>
+				<dd>With just a few lines of code it is super easy to integrate this library to your project. Also as a bower package it is easy to install and manage the dependencies (<code>bower install chessboard-js</code>).</dd>
+				<dt><span class="glyphicon glyphicon-fullscreen"></span> Responsiveness</dt>
+				<dd>The board is created in a way to resize itself automatically, so there is no need to call a resize function. This makes it possible to easily integrate ChessboardJS into responsive designs. You can easily check out this feature by looking at the examples and resizing the browser window.</dd>
+				<dt><span class="glyphicon glyphicon-phone"></span> Mobile-first</dt>
+				<dd>Apart from being responsive there is more for the mobile world. One thing is that the drag &amp; drop feature - so common in many chessboard libraries - has been deliberately left out, as there is no much use for that on touch devices. No utilisation of the mouse-hover events either. Also as much as possible the library was tested on mobile devices (Android, iOS, Windows Phone and Firefox OS).</dd>
+				<dt><span class="glyphicon glyphicon-file"></span> Examples and documentation</dt>
+				<dd>Detailed <a ng-href="#/examples/basic/empty">examples</a> show you the library in action. You can also use the <code>yuidoc</code> command (after installing with <code>npm install -g yuidocjs</code>) to generate developer documentation from the source on your machine.</dd>
+			</dl>
+			<h2>Some words about the examples</h2>
+			<p>
+				During development the excellent javascript chessboard library <a href="http://chessboardjs.com/" target="_blank">chessboard.js</a> has helped and gave a lot of inspiration. Since it is widely used, both the programming interface and the documentation has similar structures so that one can more easily compare the usage and features.
+				There are some differences however. Just to list a few:
+				<ul>
+					<li>No drag &amp; drop support in ChessboardJS (due to mobile oriented design). No mouse-over events are utilised for the same reason.</li>					
+					<li>ChessbordJS automatically resizes board to container div, so it is ideal to integrate into responsive designs.</li>
+					<li>ChessbordJS supports both fonts and images as pieces.</li>
+					<li>Chessboard orientation in ChessboardJS changes the rank and file markers but setting the board in a changed orientation is not effected (<a ng-href="#/examples/methods/setorientation">see examples</a>).</li>
+					<li>ChessbordJS doesn't support off-table pieces.</li>
+					<li>When generating the documentation with yuidoc, note that some of the methods are marked 'deprecated'. These are methods that can be used so to be compatible with chessboard.js, but not the preffered way to use the library.</li>
+					<li>ChessbordJS main class is named Chessboard (while chessboard.js uses the form ChessBoard). This might be important when moving from one to the other.</li>
+					<li>Other minor differences (ie. animation etc.)</li>	
+				</ul>
+			</p>
+		</div>
+		
+		<div class="col-md-4 text-center" style="font-size: 50vmin; color: #285e8e;">
+			&#9817;
+		</div>
+		
+		<div class="col-md-1"></div>
+	</div>
+</div>
+
+<a href="http://github.com/caustique/chessboard-js">
+	<img style="position: absolute; top: 0; right: 0; border: 0; padding-top: 50px;" 
+			 src="https://github-camo.global.ssl.fastly.net/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" 
+			 alt="Fork me on GitHub" 
+			 data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+</a>

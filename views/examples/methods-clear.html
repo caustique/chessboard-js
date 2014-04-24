@@ -1,0 +1,63 @@
+<div data-caustique-app-navbar></div>
+
+<div class="container">
+	<header class="page-header">
+		<h1>ChessboardJS examples <small>Methods - clear()</small></h1>
+	</header>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-1"></div>
+		
+		<div class="col-md-4">
+			<div data-caustique-app-sidebar></div>
+		</div>
+		
+		<div class="col-md-6">					
+			<h4>clear()</h4>
+			<br/>
+			<h5>DESCRIPTION</h5>
+			<p>
+				Clear clears the pieces from the table and sets the orientation of the table to ChessUtils.ORIENTATION.white.
+			</p>
+			<h5>JAVASCRIPT</h5>
+			<p>
+				
+<pre class="prettyprint">
+board.clear();
+</pre>
+			
+			</p>
+			<h5>IN ACTION</h5>
+			<p>
+				<a type="button" class="btn btn-primary" onclick="board.clear()">clear()</a>
+				<a type="button" class="btn btn-default" onclick="board.setPosition(ChessUtils.FEN.startId)">Filling up the board again</a>
+			</p>	
+	
+			<div id="my-board" style="width:100%"></div>
+		
+			<h5>NOTES</h5>
+			<p>
+				Alternatively you can call the setPosition() or position() methods with the ChessUtils.FEN.emptyId parameter. Note, that in this case the orientation is not changed.
+			</p>
+			<p>
+				<a type="button" class="btn btn-default" onclick="board.setPosition(ChessUtils.FEN.emptyId)">
+					position(ChessUtils.FEN.emptyId)</a>
+				<a type="button" class="btn btn-default" onclick="board.position(ChessUtils.FEN.emptyId)">
+					setPosition(ChessUtils.FEN.emptyId)</a>
+			</p>	
+		</div>
+		
+		<div class="col-md-1"></div>
+	</div>
+</div>
+
+<script>		
+											
+	var board = new Chessboard('my-board');
+	
+	$(document).ready(prettyPrintPrepare);
+	
+</script>
+

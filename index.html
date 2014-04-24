@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+		
+    <title>ChessboardJS - A responsive, mobile-first javascript chessboard library.</title>
+    <meta name="description" content="">
+		
+		<script src="bower_components/google-code-prettify/src/prettify.js"></script>
+		<script src="bower_components/google-code-prettify/src/lang-css.js"></script>
+		
+		<link href='http://fonts.googleapis.com/css?family=The+Girl+Next+Door' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="bower_components/chessboard-js/css/chessboard.min.css">
+		
+		<link rel="stylesheet" href="styles/tomorrow.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+		
+		<link rel="stylesheet" href="styles/main.css">
+		
+		
+		<script src="bower_components/chessboard-js/js/chessboard.min.js"></script>
+		
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+  	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  	
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+		
+		
+		<script src="bower_components/chess.js/chess.min.js"></script>
+		<script src="bower_components/Garbochess-JS/js/garbochess.js"></script>
+		
+  </head>
+  <body ng-app="chessboardGithubPagesApp">
+		
+    <div ng-view="" id="app-view"></div>
+		
+		<footer class="footer navbar-default text-center" role="contentinfo" style="margin-top: 50px">
+			<div class="container">
+				<p>Designed and built with ♥ from <a href="https://github.com/caustique" target="_blank">Caustique</a></p>
+				<p>Code licensed under <a href="https://github.com/caustique/chessboard-js/blob/master/LICENSE" target="_blank">MIT</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a>.</p>
+				<ul class="list-inline">
+					<li>Currently v0.1.0</li>
+					<li>·</li>
+					<li><a href="https://github.com/caustique/chessboard-js" target="_blank">GitHub</a></li>
+					<li>·</li>
+					<li><a ng-href="#/examples/basic/empty">Examples</a></li>
+					<li>·</li>
+					<li><a href="https://github.com/caustique/chessboard-js/issues?state=open" target="_blank">Issues</a></li>
+					<li>·</li>
+					<li><a href="https://github.com/caustique/chessboard-js/releases" target="_blank">Releases</a></li>
+				</ul>
+			</div>
+		</footer>
+		
+		<script src="scripts/app.js"></script>
+		<script src="scripts/controllers.js"></script>
+		
+		<script>
+			function prettyPrintPrepare() {
+				$('.prettyprint').html(function(i,h){
+					return h.replace(/[<>\"\'\t\n]/g, function(m) { return {
+						'<' : '&lt;',
+						'>' : '&gt;',
+						"'" : '&#39;',
+						'"' : '&quot;',
+						'\t': '  ',
+						'\n': '<br/>' // needed for IE
+					}[m]});
+				});
+
+				prettyPrint();
+
+			};
+
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,17 @@
+{
+	"name": "chessboard-js-gh-pages",
+  "dependencies": {
+		"chessboard-js": "~0.1.0",
+		
+    "jquery": "~2.1.0",
+		"bootstrap": "~3.1.1",
+		
+		"angular": "1.2.14",
+		"angular-route": "1.2.14",
+		
+		"google-code-prettify": "~1.0.1",
+		
+		"chess.js": "git://github.com/jhlywa/chess.js",
+		"Garbochess-JS": "git://github.com/glinscott/Garbochess-JS"
+  }
+}

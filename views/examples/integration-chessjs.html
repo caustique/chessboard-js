@@ -1,0 +1,214 @@
+<div data-caustique-app-navbar></div>
+
+<div class="container">
+	<header class="page-header">
+		<h1>ChessboardJS examples <small>Integration - Chess.js</small></h1>
+	</header>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-1"></div>
+		
+		<div class="col-md-4">
+			<div data-caustique-app-sidebar></div>
+		</div>
+		
+		<div class="col-md-6">					
+			
+			<p>
+				<a href="https://github.com/jhlywa/chess.js" target="_blank">Chess.js</a> is a javascript library created by Jeff Hlywa, and is "a Javascript chess library for chess move generation/validation, piece placement/movement, and check/checkmate/draw detection" according to his own definition.
+			</p>
+			<p>
+				In this sample you have to play with both sides - since Chess.js doesn't include any ai. Below the board you'll see some code highlights. Use the 'View Source' menu to see the full source code.
+			</p>
+			<p>
+				<em>Note that the way these components are integrated in this example is not necessarily a best practice.</em>
+			</p>
+	
+			<div id="my-board" style="width:100%; margin-bottom: 20px;"></div>
+			
+			<div class="panel panel-default" ng-controller="MenuCtrl">
+				<div class="panel-heading">
+					<h5>
+						Game information 
+					</h5>
+				</div>
+				<ul class="list-group">
+					<li class="list-group-item">Status: <span id="info-status"></span>
+						<a type="button" id="btn-reset-game" class="pull-right" style="cursor: pointer;" onclick="resetGame()">Restart game</a>
+					</li>
+					<li class="list-group-item">Fen: <span id="info-fen"></span></li>
+					<li class="list-group-item">Pgn: <span id="info-pgn"></span></li>
+				</ul>
+			</div>
+			
+			<h5>HTML</h5>
+			<p>
+				
+<pre class="prettyprint">
+<div id="board" style="width:100%"></div>
+</pre>
+			</p>
+			<h5>JAVASCRIPT</h5>
+			<p>
+				
+<pre class="prettyprint">
+var chess = new Chess();
+
+var board = new Chessboard('my-board', {
+	position: ChessUtils.FEN.startId,
+	eventHandlers: {
+		onPieceSelected: pieceSelected,
+		onMove: pieceMove
+	}
+});
+
+resetGame();
+
+function resetGame() {
+	board.setPosition(ChessUtils.FEN.startId);
+	chess.reset();
+
+	updateGameInfo('Next player is white.');
+}
+
+function updateGameInfo(status) {
+	$('#info-status').html(status);
+	$('#info-fen').html(chess.fen());
+	$('#info-pgn').html(chess.pgn());
+}
+
+function pieceMove(move) {
+
+	var nextPlayer,
+		status,
+		chessMove = chess.move({
+			from: move.from,
+			to: move.to,
+			promotion: 'q'
+		});
+
+
+	nextPlayer = 'white';
+	if (chess.turn() === 'b') {
+		nextPlayer = 'black';
+	}
+
+	if (chessMove !== null) {
+		if (chess.in_checkmate() === true) {
+			status = 'CHECKMATE! Player ' + nextPlayer + ' lost.';
+		} else if (chess.in_draw() === true) {
+			status = 'DRAW!';
+		} else {
+			status = 'Next player is ' + nextPlayer + '.';
+
+			if (chess.in_check() === true) {
+				status = 'CHECK! ' + status;				
+			}
+		}
+
+		updateGameInfo(status);			
+	}
+
+	return chess.fen();
+}
+
+function pieceSelected(notationSquare) {
+	var i,
+		movesNotation,
+		movesPosition = [];
+
+	movesNotation = chess.moves({square: notationSquare, verbose: true});
+	for (i = 0; i < movesNotation.length; i++) {
+		movesPosition.push(ChessUtils.convertNotationSquareToIndex(movesNotation[i].to));
+	}
+	return movesPosition;
+}
+</pre>
+			
+			</p>
+		</div>
+		
+		<div class="col-md-1"></div>
+	</div>
+</div>
+
+<script>		
+											
+	var chess = new Chess();
+	
+	var board = new Chessboard('my-board', {
+		position: ChessUtils.FEN.startId,
+		eventHandlers: {
+			onPieceSelected: pieceSelected,
+			onMove: pieceMove
+		}
+	});
+	
+	resetGame();
+	
+	function resetGame() {
+		board.setPosition(ChessUtils.FEN.startId);
+		chess.reset();
+		
+		updateGameInfo('Next player is white.');
+	}
+	
+	function updateGameInfo(status) {
+		$('#info-status').html(status);
+		$('#info-fen').html(chess.fen());
+		$('#info-pgn').html(chess.pgn());
+	}
+	
+	function pieceMove(move) {
+		
+		var nextPlayer,
+			status,
+			chessMove = chess.move({
+				from: move.from,
+				to: move.to,
+				promotion: 'q'
+			});
+		
+		
+		nextPlayer = 'white';
+		if (chess.turn() === 'b') {
+			nextPlayer = 'black';
+		}
+		
+		if (chessMove !== null) {
+			if (chess.in_checkmate() === true) {
+				status = 'CHECKMATE! Player ' + nextPlayer + ' lost.';
+			} else if (chess.in_draw() === true) {
+				status = 'DRAW!';
+			} else {
+				status = 'Next player is ' + nextPlayer + '.';
+
+				if (chess.in_check() === true) {
+					status = 'CHECK! ' + status;				
+				}
+			}
+			
+			updateGameInfo(status);			
+		}
+
+		return chess.fen();
+	}
+	
+	function pieceSelected(notationSquare) {
+		var i,
+			movesNotation,
+			movesPosition = [];
+		
+		movesNotation = chess.moves({square: notationSquare, verbose: true});
+		for (i = 0; i < movesNotation.length; i++) {
+			movesPosition.push(ChessUtils.convertNotationSquareToIndex(movesNotation[i].to));
+		}
+		return movesPosition;
+	}
+		
+	$(document).ready(prettyPrintPrepare);
+	
+</script>
+

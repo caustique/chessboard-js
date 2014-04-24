@@ -1,0 +1,91 @@
+<div data-caustique-app-navbar></div>
+
+<div class="container">
+	<header class="page-header">
+		<h1>ChessboardJS examples <small>Methods - setPosition(position[, useAnimation=true])</small></h1>
+	</header>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-1"></div>
+		
+		<div class="col-md-4">
+			<div data-caustique-app-sidebar></div>
+		</div>
+		
+		<div class="col-md-6">					
+			<h4>setPosition(position[, useAnimation=true])</h4>
+			<br/>
+			<h5>DESCRIPTION</h5>
+			<p>
+				Sets the position on the boards. Leaves the board orientation intact.
+			</p>
+			<h5>JAVASCRIPT</h5>
+			<p>
+				
+<pre class="prettyprint">
+board.setPosition('r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R');
+</pre>
+			
+			</p>
+			<h5>IN ACTION</h5>
+			<p>
+				Sets the position to the defined string. The format parameter can be either a position string a fen string or a notation object.
+			</p>	
+			<p>	
+				<input type="text" id="positionString" style="width:100%"
+							 value="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"/>
+			</p>
+			<p>	
+				<a type="button" class="btn btn-primary" id="btnSetPosition">setPosition(format)</a>
+				<a type="button" class="btn btn-default" id="btnPosition">position(format, false)</a>
+			</p>
+			<p>
+				Some examples, that you can use:
+				<small>
+				<ul>
+					<li><a style="cursor: pointer"
+								 onclick="$('#positionString').val('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')">
+						rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR</a></li>
+					<li><a style="cursor: pointer"
+								 onclick="$('#positionString').val('rnbqkbnrpppppppp00000000000000000000000000000000PPPPPPPPRNBQKBNR')">
+						rnbqkbnrpppppppp00000000000000000000000000000000PPPPPPPPRNBQKBNR</a></li>
+					<li><a style="cursor: pointer"
+								 onclick="$('#positionString').val('r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R')">
+						r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R</a></li>
+					<li><a style="cursor: pointer"
+								 onclick="$('#positionString').val('8/8/8/8/8/8/8/8')">
+						8/8/8/8/8/8/8/8</a></li>
+				</ul>
+				</small>
+			</p>
+	
+			<div id="my-board" style="width:100%"></div>
+		
+			<h5>NOTES</h5>
+			<p>
+				Alternatively you can call the position() method as is in the example above.
+			</p>	
+		</div>
+		
+		<div class="col-md-1"></div>
+	</div>
+</div>
+
+<script>		
+											
+	var board = new Chessboard('my-board', {position: ChessUtils.FEN.emptyId});
+	
+	$(document).ready(prettyPrintPrepare);
+	
+	$('#btnSetPosition').click(function () {
+		board.setPosition($('#positionString').val());
+	});
+	
+	$('#btnPosition').click(function () {
+		board.position($('#positionString').val(), false);
+	});
+	
+</script>
+

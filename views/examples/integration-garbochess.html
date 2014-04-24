@@ -1,0 +1,250 @@
+<div data-caustique-app-navbar></div>
+
+<div class="container">
+	<header class="page-header">
+		<h1>ChessboardJS examples <small>Integration - Garbochess JS</small></h1>
+	</header>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-1"></div>
+		
+		<div class="col-md-4">
+			<div data-caustique-app-sidebar></div>
+		</div>
+		
+		<div class="col-md-6">					
+			
+			<p>
+				<a href="https://github.com/glinscott/Garbochess-JS" target="_blank">Garbochess JS</a> is a javascript chess ai library created by Gary Linscottand is a port of his C++ chess engine. The project hasn't been updated a while ago, but it makes a good example nevertheless.
+			</p>
+			<p>
+				In this sample you play white. Below the board you'll see some code highlights. Use the 'View Source' menu to see the full source code.
+			</p>
+			<p>
+				<em>Note that the way these components are integrated in this example is not necessarily a best practice.</em>
+			</p>
+	
+			<div id="my-board" style="width:100%; margin-bottom: 20px;"></div>
+			
+			<div class="panel panel-default" ng-controller="MenuCtrl">
+				<div class="panel-heading">
+					<h5>
+						Game information 
+					</h5>
+				</div>
+				<ul class="list-group">
+					<li class="list-group-item">Status: <span id="info-status"></span>						
+						<a type="button" id="btn-reset-game" 
+							 class="pull-right" style="cursor: pointer; margin-left:20px;" onclick="resetGame()">
+							Restart game</a>
+						<a type="button" id="btn-reset-game" class="pull-right" style="cursor: pointer;" onclick="undoGame()">
+							Undo</a>
+					</li>
+					<li class="list-group-item">Fen: <span id="info-fen"></span></li>
+				</ul>
+			</div>
+			
+			<h5>HTML</h5>
+			<p>
+				
+<pre class="prettyprint">
+<div id="board" style="width:100%"></div>
+</pre>
+			</p>
+			<h5>JAVASCRIPT</h5>
+			<p>
+				
+<pre class="prettyprint">
+var board = new Chessboard('board');
+</pre>
+			
+			</p>
+		</div>
+		
+		<div class="col-md-1"></div>
+	</div>
+</div>
+
+<script>		
+											
+	var g_validMoves = null;
+	var g_allMoves = [];
+	var g_Checkmate = false;
+	var g_Stalemate = false;
+
+	var board = new Chessboard('my-board', {
+		position: 'start',
+		showNotation: true,
+		eventHandlers: {
+			onPieceSelected: pieceSelected,
+			onMove: pieceMove
+		}
+	});
+	
+	resetGame();
+	g_timeout = 10;
+	
+	
+	function updateGameInfo() {
+		var nextPlayer,
+			status;
+		
+		
+		nextPlayer = g_toMove ? 'white' : 'black';
+		
+
+		if (g_Checkmate === true) {
+			status = 'CHECKMATE! Player ' + nextPlayer + ' lost.';
+		} else if (g_Stalemate === true) {
+			status = 'DRAW!';
+		} else {
+			status = 'Next player is ' + nextPlayer + '.';
+
+			if (g_inCheck === true) {
+				status = 'CHECK! ' + status;				
+			}
+		}			
+		
+
+		$('#info-status').html(status);
+		$('#info-fen').html(GetFen());
+	}
+
+	function undoGame() {		
+		if (g_allMoves.length === 0) {
+			return;
+		}
+
+		UnmakeMove(g_allMoves[g_allMoves.length - 1]);
+		g_allMoves.pop();
+		UnmakeMove(g_allMoves[g_allMoves.length - 1]);
+		g_allMoves.pop();
+		
+		g_Checkmate = false;
+		g_Stalemate = false;
+		
+		g_validMoves = GenerateValidMoves();
+		
+		board.setPosition(GetFen());
+
+		updateGameInfo();
+	}
+
+	function resetGame() {
+		ResetGame();
+		board.setPosition(ChessUtils.FEN.startId, true);
+		updateGameInfo();
+		g_Checkmate = false;
+		g_Stalemate = false;
+	}
+
+	function pieceMove(move) {
+		var i,
+			moveFromX = ChessUtils.convertIndexToColumn(ChessUtils.convertNotationSquareToIndex(move.from)),
+			moveFromY = ChessUtils.convertIndexToRow(ChessUtils.convertNotationSquareToIndex(move.from)),
+			moveToX = ChessUtils.convertIndexToColumn(ChessUtils.convertNotationSquareToIndex(move.to)),
+			moveToY = ChessUtils.convertIndexToRow(ChessUtils.convertNotationSquareToIndex(move.to));
+
+		for (i = 0; i < g_validMoves.length; i++) {
+			fromX = (g_validMoves[i] & 0xF) - 4;
+			fromY = 7 - (((g_validMoves[i] >> 4) & 0xF) - 2);
+			toX = ((g_validMoves[i] >> 8) & 0xF) - 4;
+			toY = 7 - (((g_validMoves[i] >> 12) & 0xF) - 2);
+
+			if ((moveFromX === fromX) && (moveFromY === fromY) && (moveToX === toX) && (moveToY === toY)) {
+
+				board.enableUserInput(false);
+
+				g_allMoves[g_allMoves.length] = g_validMoves[i];
+				MakeMove(g_validMoves[i]);
+				
+				updateGameInfo('');
+
+				g_validMoves = null;
+				
+				if (GenerateValidMoves().length === 0) {
+					if (g_inCheck) {
+						g_Checkmate = true;
+					} else {
+						g_Stalemate = true;
+					}
+				} else {
+					setTimeout("blackMoves()", 1000);
+				}
+
+				return GetFen();
+			}
+
+		}
+
+		return false;
+	}
+
+	function blackMoves() {
+		Search(function(nextMove) {
+			g_allMoves[g_allMoves.length] = nextMove;
+			MakeMove(nextMove);				
+			
+			if (GenerateValidMoves().length === 0) {
+				if (g_inCheck) {
+					g_Checkmate = true;
+				} else {
+					g_Stalemate = true;
+				}
+			}
+			
+			updateGameInfo();
+			
+			board.setPosition(GetFen());
+			board.enableUserInput(true);
+		}, 99, null);			
+	}
+
+	function gcMoveToXY(gcMove) {
+		return {
+			fromX: (gcMove & 0xF) - 4,
+			fromY: 7 - (((gcMove >> 4) & 0xF) - 2),
+			toX: ((gcMove >> 8) & 0xF) - 4,
+			toY: 7 - (((gcMove >> 12) & 0xF) - 2)
+		}
+	}
+
+
+	function pieceSelected(notationSquare) {
+		var i,
+			pieceColumn,
+			pieceRow,
+			fromX,
+			fromY,
+			toX,
+			toY,
+			moves,
+			movesPosition = [];
+
+		if (g_validMoves === null) {
+			g_validMoves = GenerateValidMoves();
+		}
+
+		pieceColumn = ChessUtils.convertIndexToColumn(ChessUtils.convertNotationSquareToIndex(notationSquare));
+		pieceRow = ChessUtils.convertIndexToRow(ChessUtils.convertNotationSquareToIndex(notationSquare));
+
+		for (i = 0; i < g_validMoves.length; i++) {
+			fromX = gcMoveToXY(g_validMoves[i]).fromX;
+			fromY = gcMoveToXY(g_validMoves[i]).fromY;
+			toX =  gcMoveToXY(g_validMoves[i]).toX;
+			toY = gcMoveToXY(g_validMoves[i]).toY;
+
+			if ((pieceColumn === fromX) && (pieceRow === fromY)) {
+				movesPosition.push(ChessUtils.convertRowColumnToIndex(toY, toX));
+			}
+
+		}
+		return movesPosition;
+	}
+	
+	$(document).ready(prettyPrintPrepare);
+	
+</script>
+

@@ -1,0 +1,163 @@
+<div data-caustique-app-navbar></div>
+
+<div class="container">
+	<header class="page-header">
+		<h1>ChessboardJS examples <small>Methods - getPosition(format)</small></h1>
+	</header>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-1"></div>
+		
+		<div class="col-md-4">
+			<div data-caustique-app-sidebar></div>
+		</div>
+		
+		<div class="col-md-6">					
+			<h4>getPosition(format)</h4>
+			<br/>
+			<h5>DESCRIPTION</h5>
+			<p>
+				Returns the current position of the board.
+			</p>
+			<h5>JAVASCRIPT</h5>
+			<p>
+				
+<pre class="prettyprint">
+board.getPosition(); // Internal position string
+board.getPosition(ChessUtils.FEN.id); // Fen string
+board.getPosition(ChessUtils.ChessUtils.NOTATION.id); // Notation object
+</pre>
+			
+			</p>
+			<h5>IN ACTION</h5>
+			<p>
+				Move the pieces around on the board below to see the method in action
+			</p>
+			<div class="panel panel-default">
+				<div class="panel-heading">board.getPosition()</div>
+				<div id="getPosition" class="panel-body"></div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">board.getPosition(ChessUtils.FEN.id)</div>
+				<div id="getPositionFen" class="panel-body"></div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">board.getPosition(ChessUtils.NOTATION.id)</div>
+				<div id="getPositionNotation" class="panel-body"></div>
+			</div>	
+			<p>
+				<a type="button" class="btn btn-default" onclick="board.clear()">Clear board</a>
+				<a type="button" class="btn btn-default" onclick="resetGame()">Reset board</a>
+			</p>	
+	
+			<div id="my-board" style="width:100%"></div>
+		
+			<h5>NOTES</h5>
+			<p>
+				Alternatively you can call the position() method to do the same.
+			</p>
+			<div class="panel panel-default">
+				<div class="panel-heading">board.position()</div>
+				<div id="position" class="panel-body"></div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">board.position(ChessUtils.FEN.id)</div>
+				<div id="positionFen" class="panel-body"></div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">board.position(ChessUtils.NOTATION.id)</div>
+				<div id="positionNotation" class="panel-body"></div>
+			</div>
+		</div>
+		
+		<div class="col-md-1"></div>
+	</div>
+</div>
+
+<script>		
+											
+	var chess = new Chess();
+	
+	var board = new Chessboard('my-board', {
+		position: ChessUtils.FEN.startId,
+		eventHandlers: {
+			onPieceSelected: pieceSelected,
+			onMove: pieceMove,
+			onChanged: positionChanged
+		}
+	});
+	
+	resetGame();
+	
+	function updateGameInfo() {
+		$('#getPosition').html(board.getPosition());
+		$('#getPositionFen').html(board.getPosition(ChessUtils.FEN.id));
+		$('#getPositionNotation').html(JSON.stringify(board.getPosition(ChessUtils.NOTATION.id), null, " "));
+		
+		$('#position').html(board.position());
+		$('#positionFen').html(board.position(ChessUtils.FEN.id));
+		$('#positionNotation').html(JSON.stringify(board.position(ChessUtils.NOTATION.id), null, " "));
+	}
+	
+	function resetGame() {
+		board.setPosition(ChessUtils.FEN.startId);
+		chess.reset();
+		updateGameInfo();
+	}
+	
+	
+	function pieceMove(move) {
+		
+		var nextPlayer,
+			status,
+			chessMove = chess.move({
+				from: move.from,
+				to: move.to,
+				promotion: 'q'
+			});
+		
+		
+		nextPlayer = 'white';
+		if (chess.turn() === 'b') {
+			nextPlayer = 'black';
+		}
+		
+		if (chessMove !== null) {
+			if (chess.in_checkmate() === true) {
+				status = 'CHECKMATE! Player ' + nextPlayer + ' lost.';
+			} else if (chess.in_draw() === true) {
+				status = 'DRAW!';
+			} else {
+				status = 'Next player is ' + nextPlayer + '.';
+
+				if (chess.in_check() === true) {
+					status = 'CHECK! ' + status;				
+				}
+			}
+		}
+	
+		return chess.fen();
+	}
+	
+	function pieceSelected(notationSquare) {
+		var i,
+			movesNotation,
+			movesPosition = [];
+		
+		movesNotation = chess.moves({square: notationSquare, verbose: true});
+		for (i = 0; i < movesNotation.length; i++) {
+			movesPosition.push(ChessUtils.convertNotationSquareToIndex(movesNotation[i].to));
+		}
+		return movesPosition;
+	}
+	
+	function positionChanged() {
+		updateGameInfo();
+	}
+	
+	$(document).ready(prettyPrintPrepare);
+	
+</script>
+

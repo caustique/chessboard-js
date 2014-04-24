@@ -1,0 +1,46 @@
+<div data-caustique-app-navbar></div>
+
+<div class="container">
+	<header class="page-header">
+		<h1>ChessboardJS examples <small>Styling - Images</small></h1>
+	</header>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-1"></div>
+		
+		<div class="col-md-4">
+			<div data-caustique-app-sidebar></div>
+		</div>
+		
+		<div class="col-md-6">					
+			<h5>CSS</h5>
+			<p>
+				
+<pre class="prettyprint lang-css">
+#my-board-with-boardimages div.chess_board div.chess_square_dark {
+	background-image: url('../images/black_square.jpg');
+}
+#my-board-with-boardimages div.chess_board div.chess_square_light {
+	background-image: url('../images/white_square.jpg');
+}
+</pre>
+			</p>
+	
+			<div id="my-board-with-boardimages" style="width:100%"></div>
+		</div>
+		
+		<div class="col-md-1"></div>
+	</div>
+</div>
+
+<script>		
+	
+	var ruyLopez = 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R';
+	var board = new Chessboard('my-board-with-boardimages', ruyLopez);								
+	
+	$(document).ready(prettyPrintPrepare);
+	
+</script>
+

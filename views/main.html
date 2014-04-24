@@ -1,0 +1,136 @@
+<div data-caustique-app-navbar></div>
+
+<div class="jumbotron">
+	<div class="container">
+		<h1>ChessboardJS</h1>
+		<p style="font-family: 'The girl next door'">A responsive mobile-first javascript chessboard library</p>
+		<p><a class="btn btn-primary btn-lg" role="button" href="https://github.com/caustique/chessboard-js/archive/master.zip">Download now &raquo;</a></p>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-4">
+			<h2>Getting started</h2>
+			<p>Add the library to your project</p>
+			<p>
+				
+<pre class="prettyprint">
+bower install chessboard-js
+</pre>
+			</p>
+			<p>Create a div to host your chessboard</p>
+			<p>
+				
+<pre class="prettyprint">
+<div id="board" style="width:100%"></div>
+</pre>
+			</p>
+			<p>Fire up the ChessboardJS library</p>
+			<p>
+				
+<pre class="prettyprint">
+var board = new Chessboard('board');
+</pre>
+			
+			</p>
+			<p>If you <a ng-href='#/examples/integration/chessjs'>connect it with third party libraries</a> you can start to play with it. Click on the pieces to try.</p>
+			<h2>What's next</h2>
+			<dl>
+					<dt><h5><a ng-href='#/examples/basic/empty'>
+						<span class="glyphicon glyphicon-cog"></span> Customization</a></h5></dt>
+					<dd>Check out the customization options to have your chessboard behave the way you like.</dd>
+					<dt><h5><a ng-href='#/examples/styling/customcolors'>
+						<span class="glyphicon glyphicon-tint"></span> Styling</a></h5></dt>				
+					<dd>The visual appearence of the board can be easily changed with css.</dd>
+					<dt><h5><a ng-href='#/examples/integration/chessjs'>
+						<span class="glyphicon glyphicon-link"></span> Integration</a></h5></dt>
+					<dd>See live examples on how easy it is to integrate ChessboardJS with other open source chess solutions.</dd>
+			</dl>
+		</div>
+		<div class="col-md-6">
+			<div id="my-board" style="width:100%"></div>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+
+
+</div>
+
+<a href="http://github.com/caustique/chessboard-js">
+	<img style="position: absolute; top: 0; right: 0; border: 0; padding-top: 50px;" 
+			 src="https://github-camo.global.ssl.fastly.net/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" 
+			 alt="Fork me on GitHub" 
+			 data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+</a>
+
+
+<script>		
+										
+	var chess = new Chess();
+	
+	var board = new Chessboard('my-board', {
+		position: ChessUtils.FEN.startId,
+		eventHandlers: {
+			onPieceSelected: pieceSelected,
+			onMove: pieceMove
+		}
+	});
+	
+	resetGame();
+	
+	function resetGame() {
+		board.setPosition(ChessUtils.FEN.startId);
+		chess.reset();
+	}
+	
+	
+	function pieceMove(move) {
+		
+		var nextPlayer,
+			status,
+			chessMove = chess.move({
+				from: move.from,
+				to: move.to,
+				promotion: 'q'
+			});
+		
+		
+		nextPlayer = 'white';
+		if (chess.turn() === 'b') {
+			nextPlayer = 'black';
+		}
+		
+		if (chessMove !== null) {
+			if (chess.in_checkmate() === true) {
+				status = 'CHECKMATE! Player ' + nextPlayer + ' lost.';
+			} else if (chess.in_draw() === true) {
+				status = 'DRAW!';
+			} else {
+				status = 'Next player is ' + nextPlayer + '.';
+
+				if (chess.in_check() === true) {
+					status = 'CHECK! ' + status;				
+				}
+			}
+		}
+
+		return chess.fen();
+	}
+	
+	function pieceSelected(notationSquare) {
+		var i,
+			movesNotation,
+			movesPosition = [];
+		
+		movesNotation = chess.moves({square: notationSquare, verbose: true});
+		for (i = 0; i < movesNotation.length; i++) {
+			movesPosition.push(ChessUtils.convertNotationSquareToIndex(movesNotation[i].to));
+		}
+		return movesPosition;
+	}
+		
+	$(document).ready(prettyPrintPrepare);
+	
+</script>

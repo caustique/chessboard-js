@@ -1,0 +1,74 @@
+<div data-caustique-app-navbar></div>
+
+<div class="container">
+	<header class="page-header">
+		<h1>ChessboardJS examples <small>Basic usage - Multiple boards</small></h1>
+	</header>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-1"></div>
+		
+		<div class="col-md-4">
+			<div data-caustique-app-sidebar></div>
+		</div>
+		
+		<div class="col-md-6">					
+			<h5>HTML</h5>
+			<p>
+				
+<pre class="prettyprint">
+<div id="board1" style="width: 30%; float: left; margin-right: 15px"></div>
+<div id="board2" style="width: 30%; float: left; margin-right: 15px"></div>
+<div id="board3" style="width: 30%; float: left;"></div>
+</pre>
+			</p>
+			<h5>JAVASCRIPT</h5>
+			<p>
+				
+<pre class="prettyprint">
+var board1 = new Chessboard('board1', {
+  position: 'start',
+  showNotation: false
+});
+var board2 = new Chessboard('board2', {
+  position: 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R',
+  showNotation: true
+});
+var board3 = new Chessboard('board3', {
+  position: 'r1k4r/p2nb1p1/2b4p/1p1n1p2/2PP4/3Q1NB1/1P3PPP/R5K1',
+  showNotation: false
+});
+</pre>
+			
+			</p>
+	
+			<div id="my-board1" style="width: 30%; float: left; margin-right: 15px"></div>
+			<div id="my-board2" style="width: 30%; float: left; margin-right: 15px"></div>
+			<div id="my-board3" style="width: 30%; float: left;"></div>
+		</div>
+		
+		<div class="col-md-1"></div>
+	</div>
+</div>
+
+<script>		
+											
+	var board1 = new Chessboard('my-board1', {
+		position: 'start',
+		showNotation: false
+	});
+	var board2 = new Chessboard('my-board2', {
+		position: 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R',
+		showNotation: true
+	});
+	var board3 = new Chessboard('my-board3', {
+		position: 'r1k4r/p2nb1p1/2b4p/1p1n1p2/2PP4/3Q1NB1/1P3PPP/R5K1',
+		showNotation: false
+	});
+	
+	$(document).ready(prettyPrintPrepare);
+	
+</script>
+

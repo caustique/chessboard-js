@@ -1,0 +1,55 @@
+<div data-caustique-app-navbar></div>
+
+<div class="container">
+	<header class="page-header">
+		<h1>ChessboardJS examples <small>Methods - move()</small></h1>
+	</header>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-1"></div>
+		
+		<div class="col-md-4">
+			<div data-caustique-app-sidebar></div>
+		</div>
+		
+		<div class="col-md-6">					
+			<h4>move()</h4>
+			<br/>
+			<h5>DESCRIPTION</h5>
+			<p>
+				Executes one or more moves on the board.
+			</p>
+			<h5>JAVASCRIPT</h5>
+			<p>
+				
+<pre class="prettyprint">
+board.move('d2-d4', 'g8-f6');
+</pre>
+			
+			</p>
+			<h5>IN ACTION</h5>
+			<p>
+				<a type="button" class="btn btn-primary" onclick="board.move('e2-e4')">move('e2-e4')</a>
+				<a type="button" class="btn btn-primary" onclick="board.move('d2-d4', 'g8-f6')">move('d2-d4', 'g8-f6')</a>
+			</p>	
+			<p>
+				<a type="button" class="btn btn-default" onclick="board.start()">Start position</a>
+			</p>
+	
+			<div id="my-board" style="width:100%"></div>	
+		</div>
+		
+		<div class="col-md-1"></div>
+	</div>
+</div>
+
+<script>		
+											
+	var board = new Chessboard('my-board');
+	
+	$(document).ready(prettyPrintPrepare);
+	
+</script>
+

@@ -1,0 +1,113 @@
+body {
+  padding-top: 50px;
+}
+
+dt {
+	margin-top: 10px;
+}
+
+.panel-heading-clickable {
+   cursor: pointer;
+}
+
+#my-board,
+my-board-with-images {
+	border-width: 2px; 
+	border-style: solid; 
+	border-color: #a59191;
+}
+
+#my-board-checkers div.chess_board div.chess_player_black.chess_piece_pawn {
+	background-image: url('../images/checkers-black.png');
+}
+#my-board-checkers div.chess_board div.chess_player_white.chess_piece_pawn {
+	background-image: url('../images/checkers-white.png');
+}
+#my-board-checkers div.chess_board div.chess_player_black.chess_piece_pawn:after,
+#my-board-checkers div.chess_board div.chess_player_white.chess_piece_pawn:after {
+	content: '';
+}
+
+#my-board-with-images div.chess_board div.chess_player_black.chess_piece_pawn:after,
+#my-board-with-images div.chess_board div.chess_player_black.chess_piece_rook:after,
+#my-board-with-images div.chess_board div.chess_player_black.chess_piece_knight:after,
+#my-board-with-images div.chess_board div.chess_player_black.chess_piece_bishop:after,
+#my-board-with-images div.chess_board div.chess_player_black.chess_piece_queen:after,
+#my-board-with-images div.chess_board div.chess_player_black.chess_piece_king:after,
+#my-board-with-images div.chess_board div.chess_player_white.chess_piece_pawn:after,
+#my-board-with-images div.chess_board div.chess_player_white.chess_piece_rook:after,
+#my-board-with-images div.chess_board div.chess_player_white.chess_piece_knight:after,
+#my-board-with-images div.chess_board div.chess_player_white.chess_piece_bishop:after,
+#my-board-with-images div.chess_board div.chess_player_white.chess_piece_queen:after,
+#my-board-with-images div.chess_board div.chess_player_white.chess_piece_king:after {
+	content: '';
+}
+
+#my-board-with-images div.chess_board div.chess_player_black.chess_piece_pawn {
+	background-image: url('http://upload.wikimedia.org/wikipedia/commons/c/c7/Chess_pdt45.svg');
+}
+#my-board-with-images div.chess_board div.chess_player_black.chess_piece_rook {
+	background-image: url('http://upload.wikimedia.org/wikipedia/commons/f/ff/Chess_rdt45.svg');
+}
+#my-board-with-images div.chess_board div.chess_player_black.chess_piece_knight {
+	background-image: url('http://upload.wikimedia.org/wikipedia/commons/e/ef/Chess_ndt45.svg');
+}
+#my-board-with-images div.chess_board div.chess_player_black.chess_piece_bishop {
+	background-image: url('http://upload.wikimedia.org/wikipedia/commons/9/98/Chess_bdt45.svg');
+}
+#my-board-with-images div.chess_board div.chess_player_black.chess_piece_queen {
+	background-image: url('http://upload.wikimedia.org/wikipedia/commons/4/47/Chess_qdt45.svg');
+}
+#my-board-with-images div.chess_board div.chess_player_black.chess_piece_king {
+	background-image: url('http://upload.wikimedia.org/wikipedia/commons/f/f0/Chess_kdt45.svg');
+}
+#my-board-with-images div.chess_board div.chess_player_white.chess_piece_pawn {
+	background-image: url('http://upload.wikimedia.org/wikipedia/commons/4/45/Chess_plt45.svg');
+}
+#my-board-with-images div.chess_board div.chess_player_white.chess_piece_rook {
+	background-image: url('http://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rlt45.svg');
+}
+#my-board-with-images div.chess_board div.chess_player_white.chess_piece_knight {
+	background-image: url('http://upload.wikimedia.org/wikipedia/commons/7/70/Chess_nlt45.svg');
+}
+#my-board-with-images div.chess_board div.chess_player_white.chess_piece_bishop {
+	background-image: url('http://upload.wikimedia.org/wikipedia/commons/b/b1/Chess_blt45.svg');
+}
+#my-board-with-images div.chess_board div.chess_player_white.chess_piece_queen {
+	background-image: url('http://upload.wikimedia.org/wikipedia/commons/1/15/Chess_qlt45.svg');
+}
+#my-board-with-images div.chess_board div.chess_player_white.chess_piece_king {
+	background-image: url('http://upload.wikimedia.org/wikipedia/commons/4/42/Chess_klt45.svg');
+}
+
+#my-board-with-boardimages div.chess_board div.chess_square_dark {
+	background-image: url('../images/black_square.jpg');
+}
+#my-board-with-boardimages div.chess_board div.chess_square_light {
+	background-image: url('../images/white_square.jpg');
+}
+
+
+#my-board-custom-colors div.chess_board div.chess_square_light {
+	background-color: #FFFF9D;
+}
+#my-board-custom-colors div.chess_board div.chess_square_dark {
+	background-color: #BEEB9F;
+}
+
+#my-board-custom-colors div.chess_board div.chess_square_light > div.chess_label_row,
+#my-board-custom-colors div.chess_board div.chess_square_light > div.chess_label_column {
+	color: #BEEB9F;
+}
+
+#my-board-custom-colors div.chess_board div.chess_square_dark > div.chess_label_row,
+#my-board-custom-colors div.chess_board div.chess_square_dark > div.chess_label_column {
+	color: #FFFF9D;
+}
+
+#my-board-custom-colors div.chess_board div.chess_player_white {
+	color: #00A388;
+}
+#my-board-custom-colors div.chess_board div.chess_player_black {
+	color: #00A388;
+}

@@ -1,0 +1,17 @@
+<div class="panel panel-default" ng-controller="MenuCtrl">
+	<div class="panel-heading">
+		<h4><a ng-href="#/documentation/methods/clear" class="list-group-item" 
+					 ng-class="{active: current_path.indexOf('/documentation/methods') === 0}">
+			Methods
+			<span class="glyphicon glyphicon-chevron-down pull-right"
+						ng-show="current_path.indexOf('/documentation/methods') !== 0"></span>
+		</a></h4>
+	</div>
+	<div class="panel-body">
+		<em>Public methods of the Chessboard</em>
+	</div>
+	<ul class="list-group" ng-show="current_path.indexOf('/documentation/methods') === 0">
+		<a ng-href="#/documentation/methods/clear" class="list-group-item" 
+			 ng-class="{active: current_path === '/documentation/methods/clear'}">clear()</a>
+	</ul>
+</div>
