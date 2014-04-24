@@ -1,0 +1,11 @@
+{
+	"name": "chessboard-js",
+	"description": "A responsive mobile-first javascript chessboard library.",
+	"version": "0.1.0",
+	"url": "https://github.com/caustique/chessboard-js",
+	"options": {
+		"linkNatives": "true",
+		"outdir": "./doc",
+		"paths": ["./js"]
+	}
+}

@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+		
+    <title>ChessboardJS - Manual tesing page</title>
+    <meta name="description" content="">
+				
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		
+		<link rel="stylesheet" href="../../css/chessboard.css">		
+		<script src="../../js/chessboard.js"></script>
+		
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		
+		<script src="bower_components/chess.js/chess.min.js"></script>
+		
+		<script src="js/app.js"></script>
+				
+  </head>
+  <body>
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<p>
+						<h4>Public interface</h4>
+						<h5>this.enableUserInput = function (enabled)</h5>					
+						<div class="btn-group" data-toggle="buttons">
+							<label class="btn btn-primary active" id="btnEnableUserInput">
+								<input type="radio" name="options"> Enable user input
+							</label>
+							<label class="btn btn-primary" id="btnDisableUserInput">
+								<input type="radio" name="options"> Disable user input
+							</label>
+						</div>
+						<h5>this.isUserInputEnabled = function ()</h5>
+						<em id="isUserInputEnabled"></em>
+						
+						
+						
+					</p>
+				</div>
+				<div class="col-md-6">
+					<div id="board" style="width:80vmin"></div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h5>
+								Game information 
+							</h5>
+						</div>
+						<ul class="list-group">
+							<li class="list-group-item">Status: <span id="info-status"></span>
+								<a type="button" id="btn-reset-game" class="pull-right" style="cursor: pointer;">Restart game</a>
+							</li>
+							<li class="list-group-item">Fen: <span id="info-fen"></span></li>
+							<li class="list-group-item">Pgn: <span id="info-pgn"></span></li>
+						</ul>
+					</div>
+				</div>				
+			</div>
+		</div>
+			
+	</body>
+		
+</html>
