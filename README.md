@@ -5,7 +5,9 @@ A responsive mobile-first javascript chessboard library.
 ##Quick start 
 
 Clone the repo: `https://github.com/caustique/chessboard-js.git`
+
 or
+
 Install with [Bower](http://bower.io): `bower install chessboard-js`.
 
 ##Developer notes
